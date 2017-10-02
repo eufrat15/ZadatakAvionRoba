@@ -1,8 +1,7 @@
 package model;
 
-import com.j256.ormlite.dao.ForeignCollection;
+
 import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "roba")
@@ -26,8 +25,8 @@ public class Roba {
     public static final String POLJE_OPIS = "opis";
     public static final String POLJE_TEZINA = "tezina";
 
-    @ForeignCollectionField(foreignFieldName = "roba")
-    private ForeignCollection<Roba> aviona;
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "avion_id")
+    private Avion avion;
 
     public Roba(){
 
@@ -71,6 +70,14 @@ public class Roba {
 
     public void setTezina(double tezina) {
         this.tezina = tezina;
+    }
+
+    public Avion getAvion() {
+        return avion;
+    }
+
+    public void setAvion(Avion avion) {
+        this.avion = avion;
     }
 
     @Override
